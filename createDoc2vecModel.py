@@ -7,7 +7,7 @@ from gensim.models.doc2vec import LabeledSentence
 
 INPUT_DOC_DIR = './text/'
 ENC_CONFIG = 'utf-8'
-OUTPUT_MODEL = 'doc2vec_houhan.model'
+OUTPUT_MODEL = 'doc2vec_houhan(saigen).model'
 
 # 全てのファイルのリストを取得
 def get_all_files(directory):
@@ -67,7 +67,8 @@ def corpus_to_sentences(corpus):
 
 # 学習
 def train(sentences):
-    model = models.Doc2Vec(size=400, alpha=0.0015, sample=1e-4, min_count=1, workers=4, iter=20)
+    model = models.Doc2Vec(vector_size=400, epochs=20, start_alpha=0.0015, end_alpha=0.0015, sample=1e-4, min_count=1, workers=4, dm=1)
+#     model = models.Doc2Vec(vector_size=300, epochs=20, start=0.025, end=0.0001, sample=1e-5, min_count=1, workers=4, window=15, dm=0)
     model.build_vocab(sentences)    
     model.train(sentences, epochs=model.iter, total_examples=model.corpus_count)
     

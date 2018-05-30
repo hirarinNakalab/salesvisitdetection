@@ -48,7 +48,6 @@ def trim_doc(doc):
             line = line[1:]
         if line.startswith('M'):
             line = line[5:] 
-        #print(line)
         valid_lines.append(line)
     
     return ''.join(valid_lines)
@@ -67,17 +66,10 @@ def split_into_words(doc, name=''):
 
 def run(input_dir, encoding):
     corpus = list(get_all_files(input_dir))
-    sentences = list(corpus_to_sentences(corpus, encoding))
-    return sentences
+    orig_sentences = list(corpus_to_sentences(corpus, encoding))
+    return orig_sentences
 
 
 if __name__ == "__main__":
-    sentences = run(INPUT_VALI_DIR, ENC_CONFIG)
-#     valid_sentences = run(INPUT_VALI_DIR, ENC_CONFIG)
-    print(len(sentences))
-#     print(sentences[0].words)
-#     print(len(valid_sentences))
-#     for i in range(len(sentences)):
-#     i = 0
-#     print(sentences[i].tags)
-#     print(sentences[i].words)
+    vali_sentences = run(INPUT_VALI_DIR, ENC_CONFIG)
+    print(len(vali_sentences))
