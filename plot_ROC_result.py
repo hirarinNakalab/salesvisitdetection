@@ -10,7 +10,7 @@ from scipy import spatial
 LOAD_MODEL = 'doc2vec_houhan(saigen-size300).model'
 HOUHAN_PATH = './text/HH/'
 
-# exec(open('./parseValidFiles.py').read())
+exec(open('./parseValidFiles.py').read())
 
 model = models.Doc2Vec.load(LOAD_MODEL)
 
@@ -41,11 +41,12 @@ fpr, tpr, thresholds = metrics.roc_curve(y, scores, pos_label=2, drop_intermedia
 print(thresholds)
 auc = metrics.auc(fpr, tpr)
 
-plt.plot(fpr, tpr, label='cosine similarity of PV-DM (area = %.2f)' %auc)
+plt.plot(fpr, tpr, label='binary classification (area = %.2f)' %auc)
 plt.legend()
-plt.title('Sales Visit - Receiver Operating Characteristic')
+plt.title('Sales Visit Detection - Receiver Operating Characteristic')
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
 plt.grid(True)
 plt.plot([0, 1], [0, 1], linestyle='--', lw=2, color='r', label='Luck', alpha=.8)
 plt.savefig('roc.png')
+
